@@ -2,6 +2,10 @@
 
 A user management application built with React, TypeScript, and Redux Toolkit
 
+## Live Demo
+
+[View Live Demo](https://user-management-dashboard-tau-brown.vercel.app/)
+
 ## Features
 
 - Fetch users from the JSONPlaceholder REST API
