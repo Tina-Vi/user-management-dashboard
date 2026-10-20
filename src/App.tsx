@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
   selectAllUsers,
@@ -8,8 +8,8 @@ import {
 } from "./features/users/usersSelectors";
 import { useState, useEffect, useMemo } from "react";
 import { fetchUsers } from "./features/users/usersSlice";
-import UsersList from "./components/usersList";
-import UserForm from "./components/addUserForm";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./components/sidebarMenu";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -54,36 +54,35 @@ function App() {
     return filter === "first5" ? sortedUsers.slice(0, 5) : sortedUsers;
   }, [users, sortOrder, filter, search]);
 
-  /*const searchedUsers = users.filter((user) => {
-    return user.name.toLowerCase().includes(search.trim().toLowerCase());
-  });
-
-  const sortedUsers = [...searchedUsers].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.name.localeCompare(b.name);
-    } else {
-      return b.name.localeCompare(a.name);
-    }
-  });
-
-  const visibleUsers =
-    filter === "first5" ? sortedUsers.slice(0, 5) : sortedUsers;*/
-
-  if (status === "idle" || status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (status === "failed") {
-    return <p>Error: {error}</p>;
-  }
-
   function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
   }
 
   return (
-    <div>
-      <h1>User Management Dashboard</h1>
+    <div className="app-layout">
+      <Sidebar />
+      <main>
+        <Outlet
+          context={{
+            setSortOrder,
+            setFilter,
+            status,
+            error,
+            handleSearchChange,
+            visibleUsers,
+            search,
+          }}
+        />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+// пусть тут на всякий будет
+/*<div>
+      /*<h1>User Management Dashboard</h1>
 
       <input type="search" value={search} onChange={handleSearchChange} />
 
@@ -99,8 +98,4 @@ function App() {
       ) : (
         <UsersList users={visibleUsers} />
       )}
-    </div>
-  );
-}
-
-export default App;
+    </div>*/
