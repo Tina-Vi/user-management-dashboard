@@ -1,126 +1,135 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
 }
 
+:root {
+  --color-background: rgb(245, 242, 237);
+  --color-sidebar: rgb(38, 54, 44);
+  --color-small-text: rgb(184, 183, 179);
+  --color-big-border: rgb(248, 245, 240);
+  --color-small-border: rgb(253, 249, 246);
+  --color-border: rgb(167, 175, 167);
+  --color-border-chosen: rgb(230, 231, 225);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
 body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  min-width: 320px;
 }
 
 .app-layout {
   display: flex;
   min-height: 100vh;
+  flex-direction: row;
 }
 
 .app-layout main {
   flex: 1;
+  width: auto;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 220px;
+  min-height: 100vh;
+  width: 17%;
+  background-color: rgb(38, 54, 44);
+  gap: 2.5rem;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding-top: 2rem;
+  align-items: flex-start;
+  padding-inline: 3rem;
+}
+
+.sidebar-brand-icon {
+  color: rgb(253, 249, 246);
+  width: 35px;
+  height: 35px;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar-brand-name {
+  font-family: "Gupter", serif;
+  color: rgb(253, 249, 246);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.sidebar-brand-subtitle {
+  font-family: "Palanquin", sans-serif;
+  color: rgb(184, 183, 179);
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.sidebar a {
+  font-family: "Palanquin", sans-serif;
+  color: rgb(253, 249, 246);
+  text-decoration: none;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-inline: 3rem;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+  border-left: 2px solid transparent;
+  background-color: transparent;
+  padding: 0.2rem 0.5rem;
+}
+
+.sidebar-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav-link.active {
+  border-left: 2px solid whitesmoke;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav-icons {
+  color: rgb(253, 249, 246);
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-image {
+  margin-top: auto;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.sidebar-image img {
+  object-fit: contain;
+  object-position: right bottom;
+  width: 90%;
+  height: 90%;
 }
