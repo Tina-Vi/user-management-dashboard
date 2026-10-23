@@ -133,3 +133,47 @@ body {
   width: 90%;
   height: 90%;
 }
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgb(245, 242, 237);
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgb(245, 242, 237) 0%,
+      rgba(245, 242, 237, 0.9) 20%,
+      rgba(245, 242, 237, 0.5) 60%,
+      rgba(245, 242, 237, 0) 80%
+    ),
+    url("/src/assets/ForestImage.jfif");
+  background-size: cover;
+  background-position: center center 70%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 5%;
+  padding-left: 8%;
+}
+
+.main-page-project {
+  font-family: "Palanquin", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  color: rgb(133, 130, 123);
+}
+
+.main-page-name {
+  font-family: "Gupter", serif;
+  font-size: 4rem;
+  width: 50%;
+  color: rgb(38, 54, 44);
+  margin: 0;
+}
+
+.main-page-description {
+  font-family: "Palanquin", sans-serif;
+  margin: 0;
+  width: 40%;
+  color: rgb(71, 67, 59);
+}
