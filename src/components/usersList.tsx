@@ -7,7 +7,7 @@ type UsersListProps = {
 
 function UsersList({ users }: UsersListProps) {
   return (
-    <div>
+    <div className="flex-container">
       {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}

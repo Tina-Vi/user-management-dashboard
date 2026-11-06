@@ -293,3 +293,135 @@ form h2 {
   background-color: rgba(30, 61, 39, 0.5);
   color: rgb(30, 61, 39);
 }
+
+.users-page {
+  background-color: rgb(245, 242, 237);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls-container {
+  background-color: gainsboro;
+  width: 100%;
+}
+
+.users-container {
+  width: 85%;
+}
+
+.user-card {
+  background-color: rgb(252, 248, 245);
+  border: 1px solid rgb(217, 214, 212);
+  border-radius: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.user-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.user-icon {
+  background-image: url("/src/assets/user-round.svg");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgb(226, 232, 218);
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: rgb(226, 232, 218);
+}
+
+.user-card h2 {
+  font-family: "Gupter", serif;
+  font-size: 1.5rem;
+  color: rgb(27, 44, 33);
+  margin: 0;
+}
+
+.user-card p {
+  font-family: "Palanquin", sans-serif;
+  font-size: 0.9rem;
+  color: rgb(107, 106, 102);
+  margin: 0;
+}
+
+.grid-container .user-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
+}
+
+.grid-container .user-card .user-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-evenly;
+  gap: 1rem 1rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flex-container .user-card h2 {
+  font-size: 1.2rem;
+}
+
+.user-card p {
+  font-size: 0.8rem;
+}
+
+.flex-container .user-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.flex-container .user-card {
+  padding: 0.6rem 1rem;
+}
+
+.flex-container .user-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 1.5rem;
+}
+
+.flex-container .user-block .user-text-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.flex-container .user-block .user-text-container .user-username-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.flex-container .user-email {
+  margin-left: auto;
+  padding-right: 2.5rem;
+}
