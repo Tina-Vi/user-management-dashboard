@@ -26,6 +26,35 @@ function UsersPage() {
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize = 9;
+  const totalPages = Math.ceil(visibleUsers.length / pageSize);
+
+  const pageUsers = visibleUsers.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  );
+
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1,
+  );
+
+  const startPageIndex = Math.min(
+    Math.max(0, currentPage - 2),
+    Math.max(0, totalPages - 3),
+  );
+
+  const visiblePageNumbers = pageNumbers.slice(
+    startPageIndex,
+    startPageIndex + 3,
+  );
+
+  function handlePaginatedSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentPage(1);
+    handleSearchChange(event);
+  }
+
   if (status === "idle" || status === "loading") {
     return <p>Loading...</p>;
   }
@@ -39,7 +68,7 @@ function UsersPage() {
       <div className="controls-container">
         <Controls
           search={search}
-          handleSearchChange={handleSearchChange}
+          handleSearchChange={handlePaginatedSearch}
           setSortOrder={setSortOrder}
         />
 
@@ -47,12 +76,55 @@ function UsersPage() {
         <button onClick={() => setViewMode("list")}>List</button>
       </div>
       <div className="users-container">
-        {viewMode === "grid" ? (
-          <UsersGrid users={visibleUsers} />
+        {visibleUsers.length === 0 ? (
+          <p className="no-users-text">No users found</p>
+        ) : viewMode === "grid" ? (
+          <UsersGrid users={pageUsers} />
         ) : (
-          <UsersList users={visibleUsers} />
+          <UsersList users={pageUsers} />
         )}
       </div>
+
+      {totalPages > 0 && (
+        <div className="pagination-container">
+          <button
+            className="pagination-arrrows"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            &lt;
+          </button>
+
+          {visiblePageNumbers.length > 0 && visiblePageNumbers[0] > 1 && (
+            <span>...</span>
+          )}
+
+          {visiblePageNumbers.map((page) => (
+            <button
+              className={
+                page === currentPage ? "pagination-active" : "pagination-button"
+              }
+              key={page}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          ))}
+
+          {visiblePageNumbers.length > 0 &&
+            visiblePageNumbers[visiblePageNumbers.length - 1] < totalPages && (
+              <span>...</span>
+            )}
+
+          <button
+            className="pagination-arrrows"
+            disabled={currentPage >= totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            &gt;
+          </button>
+        </div>
+      )}
     </div>
   );
 }
