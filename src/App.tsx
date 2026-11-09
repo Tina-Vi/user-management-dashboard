@@ -22,8 +22,6 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-  const [filter, setFilter] = useState<"all" | "first5">("all");
-
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchUsers());
@@ -51,8 +49,8 @@ function App() {
       }
     });
 
-    return filter === "first5" ? sortedUsers.slice(0, 5) : sortedUsers;
-  }, [users, sortOrder, filter, search]);
+    return sortedUsers;
+  }, [users, sortOrder, search]);
 
   function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
@@ -65,7 +63,6 @@ function App() {
         <Outlet
           context={{
             setSortOrder,
-            setFilter,
             status,
             error,
             handleSearchChange,

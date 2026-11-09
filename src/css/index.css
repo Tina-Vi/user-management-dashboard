@@ -298,8 +298,8 @@ form h2 {
   background-color: rgb(245, 242, 237);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-height: 100vh;
 }
 
 .controls-container {
@@ -424,4 +424,59 @@ form h2 {
 .flex-container .user-email {
   margin-left: auto;
   padding-right: 2.5rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-top: auto;
+  padding: 2rem 0;
+}
+
+.pagination-button,
+.pagination-active,
+.pagination-arrrows {
+  font-family: "Palanquin", sans-serif;
+  font-size: 1.2rem;
+  padding: 0;
+  border-radius: 8px;
+  width: 2.3rem;
+  height: 2.3rem;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-arrrows {
+  color: rgb(38, 54, 44);
+  background-color: rgb(252, 248, 245);
+  border: 1px solid rgb(217, 214, 212);
+}
+
+.pagination-arrrows:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pagination-button {
+  color: rgb(38, 54, 44);
+  background-color: rgb(252, 248, 245);
+  border: 1px solid rgb(217, 214, 212);
+}
+
+.pagination-active {
+  color: rgb(252, 248, 245);
+  background-color: rgb(38, 54, 44);
+  border: 1px solid currentColor;
+}
+
+.pagination-container button:not(:disabled):hover {
+  background-color: rgba(38, 54, 44, 0.5);
+}
+
+.no-users-text {
+  font-family: "Gupter", serif;
+  color: rgb(38, 54, 44);
+  font-size: 1.5rem;
 }
