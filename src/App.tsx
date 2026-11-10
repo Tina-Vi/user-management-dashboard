@@ -56,16 +56,25 @@ function App() {
     setSearch(event.target.value);
   }
 
+  function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const value = event.target.value;
+
+    if (value === "asc" || value === "desc") {
+      setSortOrder(value);
+    }
+  }
+
   return (
     <div className="app-layout">
       <Sidebar />
       <main>
         <Outlet
           context={{
-            setSortOrder,
+            sortOrder,
             status,
             error,
             handleSearchChange,
+            handleSelectChange,
             visibleUsers,
             search,
           }}
@@ -76,23 +85,3 @@ function App() {
 }
 
 export default App;
-
-// пусть тут на всякий будет
-/*<div>
-      /*<h1>User Management Dashboard</h1>
-
-      <input type="search" value={search} onChange={handleSearchChange} />
-
-      <button onClick={() => setFilter("all")}>All users</button>
-      <button onClick={() => setFilter("first5")}>First 5 users</button>
-      <br />
-      <button onClick={() => setSortOrder("asc")}>A-Z</button>
-      <button onClick={() => setSortOrder("desc")}>Z-A</button>
-
-      <UserForm />
-      {visibleUsers.length === 0 ? (
-        <p>No users found</p>
-      ) : (
-        <UsersList users={visibleUsers} />
-      )}
-    </div>*/

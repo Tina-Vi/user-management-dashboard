@@ -232,18 +232,19 @@ form h2 {
   border-radius: 8px;
   border: 2px solid rgb(182, 194, 180);
   background-color: rgba(255, 255, 255);
+  padding-left: 1rem;
 }
 
 .error-border {
   height: 2.5rem;
   border-radius: 8px;
   border: 2px solid rgb(150, 0, 24);
+  padding-left: 1rem;
 }
 
 .inputs-container input::placeholder {
   font-family: "Palanquin", sans-serif;
   color: rgb (215, 220, 213);
-  padding-left: 1rem;
 }
 
 .inputs-container label {
@@ -299,20 +300,27 @@ form h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
+  box-sizing: border-box;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-.controls-container {
-  background-color: gainsboro;
-  width: 100%;
-}
-
-.users-container {
+.users-container,
+.users-header-container {
   width: 85%;
 }
 
+.users-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+}
+
 .user-card {
-  background-color: rgb(252, 248, 245);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgb(217, 214, 212);
   border-radius: 16px;
   box-sizing: border-box;
@@ -371,32 +379,41 @@ form h2 {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: space-evenly;
-  gap: 1rem 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  width: 100%;
+  min-height: 450px;
+
+  grid-auto-rows: minmax(130px, auto);
+  align-content: start;
 }
 
 .flex-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  width: 100%;
+  min-height: 450px;
+  justify-content: flex-start;
 }
 
 .flex-container .user-card h2 {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-.user-card p {
-  font-size: 0.8rem;
+.flex-container .user-card p {
+  font-size: 0.7rem;
 }
 
 .flex-container .user-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .flex-container .user-card {
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .flex-container .user-block {
@@ -431,9 +448,6 @@ form h2 {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-
-  margin-top: auto;
-  padding: 2rem 0;
 }
 
 .pagination-button,
@@ -450,7 +464,7 @@ form h2 {
 
 .pagination-arrrows {
   color: rgb(38, 54, 44);
-  background-color: rgb(252, 248, 245);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgb(217, 214, 212);
 }
 
@@ -461,12 +475,12 @@ form h2 {
 
 .pagination-button {
   color: rgb(38, 54, 44);
-  background-color: rgb(252, 248, 245);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgb(217, 214, 212);
 }
 
 .pagination-active {
-  color: rgb(252, 248, 245);
+  color: rgb(255, 255, 255);
   background-color: rgb(38, 54, 44);
   border: 1px solid currentColor;
 }
@@ -479,4 +493,101 @@ form h2 {
   font-family: "Gupter", serif;
   color: rgb(38, 54, 44);
   font-size: 1.5rem;
+}
+
+.users-head {
+  font-family: "Gupter", serif;
+  color: rgb(38, 54, 44);
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.users-description,
+.users-greeting {
+  font-family: "Palanquin", sans-serif;
+  font-size: 1rem;
+  color: rgb(107, 106, 102);
+  margin: 0;
+}
+
+.users-greeting {
+  padding-bottom: 0.5rem;
+}
+
+.controls-container {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.search-sort-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.search-sort-container input {
+  height: 2.2rem;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(217, 214, 212);
+  padding-left: 1rem;
+  flex-grow: 3;
+}
+
+.search-sort-container input::placeholder {
+  font-family: "Palanquin", sans-serif;
+  color: rgb(107, 106, 102);
+}
+
+.search-sort-container select {
+  font-family: "Palanquin", sans-serif;
+  color: rgb(38, 54, 44);
+  height: 2.2rem;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(217, 214, 212);
+  padding-left: 1rem;
+  width: 12rem;
+}
+
+.search-sort-container label {
+  font-family: "Palanquin", sans-serif;
+  color: rgb(38, 54, 44);
+  font-size: 1rem;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+}
+
+.view-active {
+  padding: 0;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  border: 1px solid rgb(217, 214, 212);
+  background-color: rgb(38, 54, 44);
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
+.view-button {
+  padding: 0;
+  color: rgb(38, 54, 44);
+  border-radius: 8px;
+  border: 1px solid rgb(217, 214, 212);
+  background-color: rgb(255, 255, 255);
+  height: 2.2rem;
+  width: 2.2rem;
 }
