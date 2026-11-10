@@ -6,10 +6,11 @@ import UsersGrid from "../components/usersGrid";
 import Controls from "../components/userControls";
 
 type UserPageContext = {
-  setSortOrder: (value: "asc" | "desc") => void;
+  sortOrder: "asc" | "desc";
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   visibleUsers: User[];
   search: string;
 };
@@ -21,7 +22,8 @@ function UsersPage() {
     visibleUsers,
     search,
     handleSearchChange,
-    setSortOrder,
+    handleSelectChange,
+    sortOrder,
   } = useOutletContext<UserPageContext>();
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -63,17 +65,88 @@ function UsersPage() {
     return <p>Error: {error}</p>;
   }
 
+  function getGreetings() {
+    const time = Number(new Date().getHours());
+
+    if (time >= 6 && time < 12) {
+      return "Good morning,";
+    } else if (time >= 12 && time < 17) {
+      return "Good afternoon,";
+    } else if (time >= 17 && time < 23) {
+      return "Good evening,";
+    } else if (time >= 23 || time < 5) {
+      return "Good night,";
+    } else {
+      return "Good day,";
+    }
+  }
+
   return (
     <div className="users-page">
+      <div className="users-header-container">
+        <p className="users-greeting">{getGreetings()}</p>
+        <h2 className="users-head">Users List</h2>
+        <p className="users-description">
+          Search, sort and manage all users in one place
+        </p>
+      </div>
+
       <div className="controls-container">
         <Controls
           search={search}
           handleSearchChange={handlePaginatedSearch}
-          setSortOrder={setSortOrder}
+          handleSelectChange={handleSelectChange}
+          sortOrder={sortOrder}
         />
 
-        <button onClick={() => setViewMode("grid")}>Grid</button>
-        <button onClick={() => setViewMode("list")}>List</button>
+        <div className="view-container">
+          <button
+            className={viewMode === "grid" ? "view-active" : "view-button"}
+            onClick={() => setViewMode("grid")}
+            aria-label="Grid"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="7" height="7" x="3" y="3" rx="1" />
+              <rect width="7" height="7" x="14" y="3" rx="1" />
+              <rect width="7" height="7" x="14" y="14" rx="1" />
+              <rect width="7" height="7" x="3" y="14" rx="1" />
+            </svg>
+          </button>
+          <button
+            className={viewMode === "list" ? "view-active" : "view-button"}
+            onClick={() => setViewMode("list")}
+            aria-label="List"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 5h.01" />
+              <path d="M3 12h.01" />
+              <path d="M3 19h.01" />
+              <path d="M8 5h13" />
+              <path d="M8 12h13" />
+              <path d="M8 19h13" />
+            </svg>
+          </button>
+        </div>
       </div>
       <div className="users-container">
         {visibleUsers.length === 0 ? (
